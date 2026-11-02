@@ -12,7 +12,7 @@ target_include_directories(switch-updater PUBLIC
 
 # The Switch launcher belongs to the updater project. The parent application
 # supplies the launcher source to its NRO target so the generated
-# teeworlds.nro remains in the top-level build directory.
+# the launcher NRO remains in the top-level build directory.
 set(SWITCH_UPDATER_LAUNCHER_SOURCE
 	"${CMAKE_CURRENT_SOURCE_DIR}/launcher.cpp"
 	PARENT_SCOPE

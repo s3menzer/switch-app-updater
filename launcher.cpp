@@ -61,7 +61,7 @@ namespace
 				return argumentPath;
 
 			// Resolve both a bare filename and a relative path such as
-			// "teeworlds/teeworlds.nro" before changing directories.
+			// "application/application.nro" before changing directories.
 			char currentDirectory[1024];
 			if(getcwd(currentDirectory, sizeof(currentDirectory)))
 				return std::string(currentDirectory) + "/" + argumentPath;
@@ -100,7 +100,7 @@ namespace
 	bool traceFileIsFromToday()
 	{
 		struct stat fileInfo;
-		if(stat("teeworlds.txt", &fileInfo) != 0)
+		if(stat("updater.txt", &fileInfo) != 0)
 			return false;
 
 		const std::time_t currentTime = std::time(nullptr);
@@ -219,7 +219,7 @@ int main(int argc, char **argv)
 	if(g_DebugLogging)
 	{
 		g_pTraceFile = std::fopen(
-			"teeworlds.txt",
+			"updater.txt",
 			traceFileIsFromToday() ? "a" : "w");
 		g_pConsole = consoleInit(nullptr);
 	}
@@ -230,7 +230,7 @@ int main(int argc, char **argv)
 
 	socketInitializeDefault();
 
-	printLine("Teeworlds Switch launcher starting");
+	printLine("Switch updater starting");
 	char pathMessage[1024];
 	std::snprintf(
 		pathMessage,
@@ -273,7 +273,7 @@ int main(int argc, char **argv)
 	config.currentBuild = 0;
 	config.defaultManifestUrl = SWITCH_UPDATER_MANIFEST_URL;
 	config.executablePath = executablePath.empty()
-		? "teeworlds.nro"
+		? "application.nro"
 		: executablePath;
 	config.targetPath = gamePath;
 	config.platform = "switch";
